@@ -16,14 +16,21 @@ class App extends React.Component {
         //this.state.lat = position.coords.latitude;
     }
 
-    render() {
+    renderContent() {
         if (this.state.errorMessage && !this.state.lat) {
             return (<div>Error: {this.state.errorMessage}</div>);
         } else if (this.state.lat && !this.state.errorMessage) {
             return <SeasonDisplay lat={this.state.lat} />
         }
-        return <Loading />
+        return <Loading message="Please, accept the location request..." />
+    }
 
+    render() {
+        return (
+            <div>
+                {this.renderContent()}
+            </div>
+        );
     }
 }
 
